@@ -10,9 +10,9 @@ $_SESSION['tedi'] = array();
 }
 //get current exchange rate
 if(!isset($_SESSION['exr'])){
-$url = "https://coinbase.com/api/v1/prices/spot_rate";
+$url = "https://btc-e.com/api/3/ticker/btc_usd";
 $json = json_decode(file_get_contents($url), true);
-$price = $json["amount"];
+$price = $json["btc_usd"]["last"];
 $_SESSION['exr'] = $price;
 }
 

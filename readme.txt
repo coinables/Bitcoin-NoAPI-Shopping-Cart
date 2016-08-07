@@ -1,14 +1,13 @@
 ######################################
-# Blockchain Receive Payments API v2 #
+# Bitcoin NO API Requried            #
 #     Open Shopping Cart             #
 ######################################
 
-No account with blockchain.info required however you will need an API key. 
-Request one here: https://api.blockchain.info/v2/apikey/request/
+I have been receiving a lot of reports that users are unable to obtain API Keys from Blockchain.info. 
+So I have created this shopping cart that will allow users to accept bitcoin on their website without having to use a privileged API service. 
+This project does use some public API's to check the blockchain but they require no permission or API Keys. 
 
-Blockchain.info's new Receive Payments API uses HD addresses to generate unique addresses for taking bitcoin payments. 
-Since these addresses are deterministic no payment forwarding is needed like the previous version of the API. 
-All you need is a API key and an extended public key (BIP 32)
+This is a fork of a previous project, Blockchain Receive Payments API Shopping Cart (https://github.com/coinables/Blockchain-Receive-Payments-API-Shopping-Cart)
 
 1. Download the files in the repository
 2. Create and configure a database on your webserver (How to: http://www.fastcomet.com/tutorials/cpanel/create-database)
