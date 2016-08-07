@@ -31,11 +31,18 @@ $queryOrders2 = "SELECT * FROM orders ORDER BY time DESC LIMIT 10";
 		   $order_num = $loopOrders2['orderid'];
 		   $address = $loopOrders2['payto'];
 		   $getBalance = file_get_contents("https://blockchain.info/q/addressbalance/".$address."?confirmations=1");
+		   $getUnconfirmed = file_get_contents("https://blockchain.info/q/addressbalance/".$address."?confirmations=0");
 		   if($getBalance > 0)
 		   {
 		   $queryUpdate = "UPDATE orders SET paid = 1, recd = $getBalance WHERE orderid = '$order_num'";
 		   $doUpdate = mysqli_query($conn, $queryUpdate) or die(mysqli_error($conn));
 		   header("Location: admin.php");
+		   } elseif($getUnconfirmed > 0){
+		   $utxConvert = $getUnconfirmed / 100000000;
+		   $utxConvert = number_format($utxConvert, 8);
+		   $message = "Unconfirmed payment pending: ".$utxConvert."BTC";
+		   }else {
+		   $message = "No Payment Yet";
 		   }
 		}
 	 }

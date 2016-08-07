@@ -48,12 +48,17 @@ if(isset($_POST[$order])){
 		   $order_num = $order;
 		   $address = $address;
 		   $getBalance = file_get_contents("https://blockchain.info/q/addressbalance/".$address."?confirmations=1");
+		   $getUnconfirmed = file_get_contents("https://blockchain.info/q/addressbalance/".$address."?confirmations=0");
 		   if($getBalance > 0)
 		   {
 		   $queryUpdate = "UPDATE orders SET paid = 1, recd = $getBalance WHERE orderid = '$order'";
 		   $doUpdate = mysqli_query($conn, $queryUpdate) or die(mysqli_error($conn));
 		   header("Location: order.php");
-		   } else {
+		   } elseif($getUnconfirmed > 0){
+		   $utxConvert = $getUnconfirmed / 100000000;
+		   $utxConvert = number_format($utxConvert, 8);
+		   $message = "Unconfirmed payment pending: ".$utxConvert."BTC";
+		   }else {
 		   $message = "No Payment Yet";
 		   }
 		}
@@ -77,23 +82,19 @@ if(isset($_POST['complete'])){
 <div id="viewCart">
   <span id="viewTitle">Order: <?php echo $order; ?></span><a href="admin.php">Back to Admin Panel</a><br><br>
      <b>Paid:</b> <?php echo $paidMsg; ?><br>
-	 <b>Amount Paid:</b> <?php echo $recdCalc; ?><br>
+	 <b>Amount Paid:</b> <?php echo number_format($recdCalc, 8); ?><br>
 	 <b>Order Amount:</b> <?php echo $cost; ?><br>
 	 <b>Difference:</b> <?php echo $difMsg; ?><br>
 	 <form method="post"><input type="submit" name="complete" value="Mark Order Complete"></form>
 	 <br>
-	 <button onClick="displayPK();">Show Private Key</button><br>
+	 Receiving Address: <?php echo $address; ?>
+	 <br>
+	 <button id="pkBtn">Show Private Key</button><br>
 	 <div id="privKey">
 		<center>Key: <?php echo $pkey; ?><br>
 		<img src="http://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?php echo $pkey; ?>">
 		</center>
 	 </div>
-	 <script>
-	 function displayPK(){
-			var privK = document.getElementById("privKey");
-			privK.style.display = "block";
-		};
-	 </script>
 	 <br><br>
 	 Ship To:
   <div class="confirmShip">
@@ -117,4 +118,10 @@ if(isset($_POST['complete'])){
 </div>
 <br>
 </body>
+<script   src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+<script>
+$('#pkBtn').click(function() {
+    $('#privKey').toggle('fast');
+});
+</script>
 </html>
