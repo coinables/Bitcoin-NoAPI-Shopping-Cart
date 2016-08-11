@@ -7,7 +7,7 @@ I have been receiving a lot of reports that users are unable to obtain API Keys 
 So I have created this shopping cart that will allow users to accept bitcoin on their website without having to use a privileged API service. 
 This project does use some public API's to check the blockchain but they require no permission or API Keys. 
 
-WARNING: THIS PROJECT STORES PRIVATE KEYS ON YOUR SERVER!!! ITS INTENDED USE IS FOR SMALL VALUE ITEMS. YOUR ARE ENCOURAGED TO SWEEP KEYS THROUGH THE ADMIN PANEL AS SOON AS POSSIBLE AFTER A SALE TO REDUCE POTENTIAL RISK. 
+WARNING: THIS PROJECT STORES PRIVATE KEYS ON YOUR SERVER!!! ITS INTENDED USE IS FOR SMALL VALUE ITEMS. YOU ARE ENCOURAGED TO SWEEP KEYS THROUGH THE ADMIN PANEL AS SOON AS POSSIBLE AFTER A SALE TO REDUCE POTENTIAL RISK. 
 
 This is a fork of a previous project, Blockchain Receive Payments API Shopping Cart (https://github.com/coinables/Blockchain-Receive-Payments-API-Shopping-Cart)
 
