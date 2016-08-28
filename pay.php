@@ -25,7 +25,8 @@ if(!$_SESSION['payTo'])
 <head>
 <title>Pay</title>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/qrcode.js"></script>
 <script>
 var btcs = new WebSocket('wss://ws.blockchain.info/inv');
 
@@ -64,7 +65,10 @@ btcs.onmessage = function(onmsg)
   <span id="viewTitle">Finish & Pay</span><br>
   <div id="payAmt"><b>Amount Due: <?php echo $_SESSION['orderCost']; ?> BTC</b><br>
   Remit payment to the below address to complete your order. <br>
-  <img src="http://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=<?php echo $_SESSION['payTo']; ?>"> 
+  <div id="qrcode"></div>
+  <script type="text/javascript">
+  new QRCode(document.getElementById("qrcode"), "<?php echo $_SESSION['payTo']; ?>");
+  </script>
   <br>
   <input type="text" id="payBox" value="<?php echo $_SESSION['payTo']; ?>" onclick="this.select();" readonly>
   <br><div id="messages"></div>

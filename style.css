@@ -217,8 +217,15 @@ hr{
   height: 30px;
   font-size: 19px;
   position: relative;
-  top: -40px;
   text-align: center;
+}
+#qrcode{
+  text-align: center;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  padding: 15px;
 }
 #messages{
   font-size: 21px;

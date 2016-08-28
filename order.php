@@ -75,6 +75,8 @@ if(isset($_POST['complete'])){
 <head>
 <title>Order</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/qrcode.js"></script>
 </head>
 <body>
 <h1><?php echo $storeName; ?></h1>
@@ -92,7 +94,10 @@ if(isset($_POST['complete'])){
 	 <button id="pkBtn">Show Private Key</button><br>
 	 <div id="privKey">
 		<center>Key: <?php echo $pkey; ?><br>
-		<img src="http://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?php echo $pkey; ?>">
+		<div id="qrcode"></div>
+        <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), "<?php echo $pkey; ?>");
+        </script>
 		</center>
 	 </div>
 	 <br><br>
