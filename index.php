@@ -14,6 +14,10 @@ $url = "https://btc-e.com/api/3/ticker/btc_usd";
 $json = json_decode(file_get_contents($url), true);
 $price = $json["btc_usd"]["last"];
 $_SESSION['exr'] = $price;
+	if($price < 1){
+		//price is less than 1 dollar per bitcoin, likely an error
+		die("Oops please try refreshing or try again later");
+	}
 }
 
 //count items in array
@@ -22,7 +26,7 @@ $cart = $_SESSION['tedi'];
 
 //add to cart buttons
 $queryProducts2 ="SELECT * FROM products WHERE in_stock > 0 ORDER BY id ASC";
-$resultH2=mysqli_query($conn, $queryProducts2) or die (mysqli_error($conn));
+$resultH2=mysqli_query($conn, $queryProducts2) or die ("database connection error check server log");
 	//loop through different product ids
 	while($outputsH2=mysqli_fetch_assoc($resultH2)){
 	if(isset($_POST[$outputsH2['id']])){
@@ -68,7 +72,7 @@ $resultH2=mysqli_query($conn, $queryProducts2) or die (mysqli_error($conn));
 </div>
 <?php
 $queryProducts ="SELECT * FROM products WHERE in_stock > 0 ORDER BY id ASC";
-$resultH=mysqli_query($conn, $queryProducts) or die (mysqli_error($conn));
+$resultH=mysqli_query($conn, $queryProducts) or die ("error fetching products table");
 while($outputsH=mysqli_fetch_assoc($resultH)){
    echo "<div class='shopCont'>";
    echo "<div class='shopImg'><img src='".$outputsH['image']."'></div>";
