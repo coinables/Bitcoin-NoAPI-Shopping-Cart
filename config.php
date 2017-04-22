@@ -16,7 +16,7 @@ $adminPW = "honeybadgerbubblegum";
 //connect to the database
 $conn = mysqli_connect("localhost", $dbuser, $dbpw, $db);
 if(!$conn){
-  die('Connection Error: '.mysqli_errno());
+  die('Connection error check server log');
 }
 
 ?>
