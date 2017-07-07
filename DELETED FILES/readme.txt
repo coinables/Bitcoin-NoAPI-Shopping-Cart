@@ -1,19 +1,7 @@
 ######################################
-# Users have lost funds using the    #
-#   PHPCoinAddress library           #
+# Bitcoin NO API Requried            #
+#     Open Shopping Cart             #
 ######################################
-
-I have moved the source files to the DELETED FILES directory. 
-Feel free to browse for educational purposes only. Do not use in production, or you could lose funds. 
-
-.
-...
-....
-.....
-......
-.....
-...
-.
 
 I have been receiving a lot of reports that users are unable to obtain API Keys from Blockchain.info. 
 So I have created this shopping cart that will allow users to accept bitcoin on their website without having to use a privileged API service. 
